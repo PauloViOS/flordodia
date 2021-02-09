@@ -34,6 +34,7 @@ export default {
 .carregando {
   display: flex;
   justify-self: center;
+  vertical-align: middle;
 }
 
 </style>
