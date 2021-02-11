@@ -1,7 +1,21 @@
 <template>
-  <v-dialog v-model="visible" max-width="500px">
-    {{carrinho_lista}}
-  </v-dialog>
+  <div>
+    <v-dialog v-model="visible" max-width="500px">
+      <v-list three-line  v-for="(item, index) in carrinho_lista" :key="index">
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title v-html="item.product_name">
+            </v-list-item-title><br>
+
+            R$ 
+            <v-list-item-subtitle v-html="item.product_price">
+            </v-list-item-subtitle>
+
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -23,8 +37,9 @@ export default {
     };
   },
   methods: {
-    add(product_name, product_price){
-        return [product_name, product_price]
+    add(produto){
+        this.carrinho_lista.push(produto)
+        return this.carrinho_lista
         },
     open(){
       this.visible = true;

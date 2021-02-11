@@ -1,7 +1,15 @@
 <template>
     <div>
         <v-layout row>
-            <v-btn color="pink enlighten-2" @click="open_carrinho($event)"><v-icon>shopping_bag</v-icon></v-btn>
+
+            <v-btn color="pink enlighten-2" 
+            @click="open_carrinho($event)">
+                <v-icon>shopping_bag</v-icon>
+                <span class="alerta_do_carrinho" v-if="temProduto()">
+                    {{carrinho_lista.length}}
+                </span>
+            </v-btn>
+
             <v-flex class="cards">
                 <v-card class="teste" v-for="(produto, index) in produtos" :key="index">
                     <v-img :src="produto.product_image" class="imagem_do_card">
@@ -9,7 +17,7 @@
 
                     <v-card-subtitle class="produto_nome">
                     {{produto.product_name}} <br>
-                    R$ {{produto.product_price}},00
+                    R$ {{produto.product_price}}
                     </v-card-subtitle>
 
                     <v-card-text class="produto_descricao">
@@ -23,7 +31,7 @@
                     </v-card-actions>
 
                     <v-card-actions class="botao_do_card">
-                    <v-btn class="botao_do_card" color="pink enlighten-2" @click="add_carrinho($event, produto.product_name, produto.product_price)">
+                    <v-btn class="botao_do_card" color="pink enlighten-2" @click="add_carrinho($event, produto)">
                         <v-icon>
                             shopping_cart
                         </v-icon>
@@ -55,10 +63,13 @@ export default {
         this.$refs.carrinho.open();
         evt.stopPropagation();
       },
-      add_carrinho (evt, nome, preco) {
-        this.carrinho_lista = this.$refs.carrinho.add(nome, preco);
+      add_carrinho (evt, produto) {
+        this.carrinho_lista = this.$refs.carrinho.add(produto);
         console.log(this.carrinho_lista)
         evt.stopPropagation();
+      },
+      temProduto() {
+          return this.carrinho_lista.length > 0;
       }
     }
 }
@@ -101,5 +112,19 @@ export default {
     justify-content:center;
     margin: 15px;
 }
+
+.alerta_do_carrinho {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 </style>
