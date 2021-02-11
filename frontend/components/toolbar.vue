@@ -1,8 +1,8 @@
 <template>
   <v-toolbar color="pink lighten-2" dark fixed app clipped-right>
     <v-toolbar-title>
-      <v-btn :to="{ name: 'index'}" color="pink lighten-2" elevation="0" class="botao_home">Ateliê Flor do Dia</v-btn>
-      <v-btn a href="https://www.instagram.com/wmflordodia/" target="_blank" color="pink lighten-2" elevation="0">
+      <v-btn flat ripple :to="{ name: 'index'}">Ateliê Flor do Dia</v-btn>
+      <v-btn flat ripple a href="https://www.instagram.com/wmflordodia/" target="_blank">
         <v-icon>
           camera
         </v-icon>

@@ -4,10 +4,14 @@
 
             <v-btn color="pink enlighten-2" 
             @click="open_carrinho($event)">
+                
                 <v-icon>shopping_bag</v-icon>
+                
                 <span class="alerta_do_carrinho" v-if="temProduto()">
                     {{carrinho_lista.length}}
                 </span>
+
+            
             </v-btn>
 
             <v-flex class="cards">
@@ -17,7 +21,7 @@
 
                     <v-card-subtitle class="produto_nome">
                     {{produto.product_name}} <br>
-                    R$ {{produto.product_price}}
+                    {{produto.product_price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
                     </v-card-subtitle>
 
                     <v-card-text class="produto_descricao">
@@ -69,7 +73,7 @@ export default {
         evt.stopPropagation();
       },
       temProduto() {
-          return this.carrinho_lista.length > 0;
+        return this.carrinho_lista.length > 0;
       }
     }
 }
