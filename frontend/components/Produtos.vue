@@ -2,10 +2,10 @@
     <div>
         <v-layout row>
 
-            <v-btn color="pink enlighten-2" 
+            <v-btn color="#C672BF" 
             @click="open_carrinho($event)">
                 
-                <v-icon>shopping_bag</v-icon>
+                <v-icon color="white">shopping_bag</v-icon>
                 
                 <span class="alerta_do_carrinho" v-if="temProduto()">
                     {{carrinho_lista.length}}
@@ -15,10 +15,11 @@
             </v-btn>
 
             <v-flex class="cards">
-                <v-card class="teste" v-for="(produto, index) in produtos" :key="index">
-                    <v-img :src="produto.product_image" class="imagem_do_card">
-                    </v-img>
-
+                <v-card class="card_individual" v-for="(produto, index) in produtos" :key="index">
+                    <div class="container_da_imagem">    
+                        <v-img :src="produto.product_image" class="imagem_do_card">
+                        </v-img>
+                    </div>
                     <v-card-subtitle class="produto_nome">
                     {{produto.product_name}} <br>
                     {{produto.product_price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
@@ -28,19 +29,21 @@
                     <div>{{produto.product_description}}</div>
                     </v-card-text>
 
-                    <v-card-actions class="botao_do_card">
-                    <v-btn class="botao_do_card" color="pink enlighten-2">
-                        Detalhes
-                    </v-btn>
-                    </v-card-actions>
+                    <div class="container_botoes">
+                        <v-card-actions class="botao_do_card">
+                            <v-btn  color="#C672BF" class="botao_do_card white--text">
+                                Detalhes
+                            </v-btn>
+                        </v-card-actions>
 
-                    <v-card-actions class="botao_do_card">
-                    <v-btn class="botao_do_card" color="pink enlighten-2" @click="add_carrinho($event, produto)">
-                        <v-icon>
-                            shopping_cart
-                        </v-icon>
-                    </v-btn>
-                    </v-card-actions>
+                        <v-card-actions  class="botao_do_card">
+                        <v-btn color="#C672BF" class="botao_do_card" @click="add_carrinho($event, produto)">
+                            <v-icon color="white">
+                                shopping_cart
+                            </v-icon>
+                        </v-btn>
+                        </v-card-actions>
+                    </div>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -81,42 +84,6 @@ export default {
 
 <style>
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.teste {
-    border-radius: 25px;
-    margin: 40px;
-    width: 200px
-}
-
-.produto_nome {
-    display:flex;
-    justify-content:center;
-    margin-top:15px;
-}
-
-.produto_descricao {
-    display:flex;
-    justify-content:center;
-}
-
-.botao_do_card {
-    border-radius: 25px;
-    display:flex;
-    justify-content:center;
-    vertical-align: bottom;
-}
-
-.imagem_do_card {
-    display:flex;
-    justify-content:center;
-    margin: 15px;
-}
-
 .alerta_do_carrinho {
     width: 23px;
     height: 23px;
@@ -130,5 +97,55 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
+.botao_do_card {
+    border-radius: 25px;
+    display:flex;
+    justify-content:center;
+    vertical-align: bottom;
+    color: pink;
+}
+
+.container_botoes {
+    margin-bottom: 15px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card_individual {
+    border-radius: 25px;
+    margin: 30px;
+    width: 200px;
+    text-align: center;
+}
+
+.imagem_do_card {
+    justify-content:center;
+    margin: 15px;
+}
+
+.container_da_imagem {
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.produto_descricao {
+    display:flex;
+    justify-content:center;
+    height: 74px;
+    max-height: 74px;
+    align-items: center;
+}
+
+.produto_nome {
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
 
 </style>

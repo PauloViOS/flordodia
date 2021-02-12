@@ -1,6 +1,5 @@
 <template>
-  <v-footer color="pink lighten-2" class="white--text" app>
-  </v-footer>
+  <v-footer color="#C672BF" app></v-footer>
 </template>
 
 <script>

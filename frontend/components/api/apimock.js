@@ -25,19 +25,23 @@ const api = {
         }
         return mockasync(logged_user);
     },
+    
     logout(){
         logged_user = null;
         return mockasync({});
     },
+
     whoami(){
         return mockasync(logged_user ? {
             authenticated: true,
             user: logged_user,
         } : {authenticated: false});
     },
+    
     add_todo(newtask){
         return mockasync({description: newtask, done: false});
     },
+
     list_todos(){
         return mockasync({
             todos: [
@@ -46,6 +50,7 @@ const api = {
             ]
         });
     },
+
     list_products(){
         return mockasync([
             {
@@ -102,7 +107,7 @@ const api = {
             product_description: 'Para fraldas e lenços umedecidos',
             product_image: 'necessaire_baby.png',
             product_price: 45.00
-            }
+            },
         ])
     }
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="carregando">
-      <v-progress-circular indeterminate color="pink enlighten-2" v-if="!produtos"></v-progress-circular>
+      <v-progress-circular indeterminate color="#C672BF" v-if="!produtos"></v-progress-circular>
     </div>  
     <home :produtos="produtos" v-if="produtos"></home>
   </div>
