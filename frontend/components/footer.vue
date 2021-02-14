@@ -1,5 +1,6 @@
 <template>
-  <v-footer color="#C672BF" app></v-footer>
+  <v-footer color="#C672BF" app>
+  </v-footer>
 </template>
 
 <script>

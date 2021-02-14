@@ -2,8 +2,9 @@
     <div>
         <v-layout row>
 
-            <v-btn color="#C672BF" 
-            @click="open_carrinho($event)">
+            <v-btn class="botao_carrinho" color="#C672BF" 
+            @click="open_carrinho($event)"
+            >
                 
                 <v-icon color="white">shopping_bag</v-icon>
                 
@@ -11,7 +12,6 @@
                     {{carrinho_lista.length}}
                 </span>
 
-            
             </v-btn>
 
             <v-flex class="cards">
@@ -62,7 +62,8 @@ export default {
     props: ['produtos'],
     data () {
         return {
-            carrinho_lista: []
+            carrinho_lista: [],
+            hover: false
         }
     },
     methods: {
@@ -98,12 +99,16 @@ export default {
     justify-content: center;
   }
 
+.botao_carrinho {
+    color:#C672BF;
+    transition-property: color;
+}
+
 .botao_do_card {
     border-radius: 25px;
     display:flex;
     justify-content:center;
     vertical-align: bottom;
-    color: pink;
 }
 
 .container_botoes {
