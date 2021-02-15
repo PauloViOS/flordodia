@@ -36,7 +36,6 @@
 import AppApi from '~apijs'
 
 export default {
-  props: ['carrinho_lista'],
   data () {
     console.log('data');
     return {
@@ -48,6 +47,12 @@ export default {
       password: '',
       error: false,
     };
+  },
+
+  computed: {
+    carrinho_lista: function () {
+      return this.$store.getters.carrinho
+    }
   },
 
   methods: {

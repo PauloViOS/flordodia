@@ -35,7 +35,7 @@
                                 Detalhes
                             </v-btn>
                         </v-card-actions>
-
+                        
                         <v-card-actions  class="botao_do_card">
                         <v-btn color="#C672BF" class="botao_do_card" @click="add_carrinho($event, produto)">
                             <v-icon color="white">
@@ -59,6 +59,7 @@ export default {
     components: {
       carrinho
     },
+
     props: ['produtos'],
     data () {
         return {
@@ -71,11 +72,14 @@ export default {
         this.$refs.carrinho.open();
         evt.stopPropagation();
       },
+
       add_carrinho (evt, produto) {
         this.carrinho_lista = this.$refs.carrinho.add(produto);
+        this.$store.commit('ADD_CARRINHO_LISTA', produto);
         console.log(this.carrinho_lista)
         evt.stopPropagation();
       },
+
       temProduto() {
         return this.carrinho_lista.length > 0;
       }

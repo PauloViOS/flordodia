@@ -9,6 +9,19 @@
       </v-btn>
     </v-toolbar-title>
     <v-spacer></v-spacer>
+    
+    <v-btn class="botao_carrinho" color="#C672BF" 
+    @click="open_carrinho($event)"
+    >
+                
+      <v-icon color="white">shopping_bag</v-icon>
+
+      <span class="alerta_do_carrinho" v-if="temProduto()">
+        {{carrinho_lista.length}}
+      </span>
+
+    </v-btn>
+
     <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5"  @click="open_login_dialog($event)">Login</v-btn>
     <v-menu v-if="logged_user" offset-y>
       <v-btn icon slot="activator" class="ma-0 ml-5">
@@ -46,38 +59,65 @@
       </v-card>
     </v-menu>
     <login-dialog ref="login_dialog"/>
+    <carrinho :carrinho_lista="carrinho_lista" ref="carrinho"/>
   </v-toolbar>
 </template>
 
 <script>
-  import Vuex from 'vuex'
-  import loginDialog from '~/components/login-dialog.vue'
-  import Snacks from '~/helpers/Snacks.js'
-  import AppApi from '~apijs'
-  export default {
-    components: {
-      loginDialog
-    },
-    computed: Object.assign(
-      {},
-      Vuex.mapGetters([
-        'logged_user'
-      ])
-    ),
-    props: ['state'],
-    methods: {
-      open_login_dialog (evt) {
-        this.$refs.login_dialog.open();
-        evt.stopPropagation();
-      },
-      logout(){
-        AppApi.logout().then(()=>{
-          this.$store.commit('SET_LOGGED_USER', null);
-          Snacks.show(this.$store, {text: 'Até logo!'})
-        });
-      }
+  
+import Vuex from 'vuex'
+import loginDialog from '~/components/login-dialog.vue'
+import Snacks from '~/helpers/Snacks.js'
+import AppApi from '~apijs'
+import carrinho from '~/components/carrinho.vue'
+
+export default {
+  
+  components: {
+    loginDialog,
+    carrinho
+  },
+
+  data () {
+    return {
+      carrinho_lista: [],
     }
+  },
+  
+  computed: Object.assign(
+    {},
+    Vuex.mapGetters([
+      'logged_user',
+      'carrinho'
+    ])
+  ),
+  
+  props: ['state'],
+  
+  methods: {
+    open_login_dialog (evt) {
+      this.$refs.login_dialog.open();
+      evt.stopPropagation();
+    },
+
+    logout(){
+      AppApi.logout().then(()=>{
+        this.$store.commit('SET_LOGGED_USER', null);
+        Snacks.show(this.$store, {text: 'Até logo!'})
+      });
+    },
+
+    open_carrinho (evt) {
+      this.$refs.carrinho.open();
+      evt.stopPropagation();
+    },
+
+    temProduto() {
+      return this.carrinho_lista.length > 0;
+    }
+
   }
+}
 </script>
 
 <style>
