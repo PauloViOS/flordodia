@@ -10,19 +10,19 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     
-    <v-btn class="botao_carrinho" color="#C672BF" 
+    <v-btn flat class="botao_carrinho" color="#C672BF" 
     @click="open_carrinho($event)"
     >
                 
       <v-icon color="white">shopping_bag</v-icon>
 
       <span class="alerta_do_carrinho" v-if="temProduto()">
-        {{carrinho_lista.length}}
+        {{carrinho.length}}
       </span>
 
     </v-btn>
 
-    <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5"  @click="open_login_dialog($event)">Login</v-btn>
+    <v-btn v-if="!logged_user" dark ripple class="ma-0 ml-5" color="#C672BF"  @click="open_login_dialog($event)">Login</v-btn>
     <v-menu v-if="logged_user" offset-y>
       <v-btn icon slot="activator" class="ma-0 ml-5">
         <v-avatar size="36px">
@@ -113,7 +113,7 @@ export default {
     },
 
     temProduto() {
-      return this.carrinho_lista.length > 0;
+      return this.carrinho.length > 0;
     }
 
   }

@@ -2,18 +2,6 @@
     <div>
         <v-layout row>
 
-            <v-btn class="botao_carrinho" color="#C672BF" 
-            @click="open_carrinho($event)"
-            >
-                
-                <v-icon color="white">shopping_bag</v-icon>
-                
-                <span class="alerta_do_carrinho" v-if="temProduto()">
-                    {{carrinho_lista.length}}
-                </span>
-
-            </v-btn>
-
             <v-flex class="cards">
                 <v-card class="card_individual" v-for="(produto, index) in produtos" :key="index">
                     <div class="container_da_imagem">    
@@ -74,7 +62,6 @@ export default {
       },
 
       add_carrinho (evt, produto) {
-        this.carrinho_lista = this.$refs.carrinho.add(produto);
         this.$store.commit('ADD_CARRINHO_LISTA', produto);
         console.log(this.carrinho_lista)
         evt.stopPropagation();
