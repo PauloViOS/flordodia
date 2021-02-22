@@ -2,11 +2,18 @@
   <v-toolbar color="#C672BF" dark fixed app clipped-right>
     <v-toolbar-title>
       <v-btn flat ripple :to="{ name: 'index'}">Ateliê Flor do Dia</v-btn>
-      <v-btn flat ripple a href="https://www.instagram.com/wmflordodia/" target="_blank">
+      <v-btn icon flat ripple a href="https://www.instagram.com/wmflordodia/" target="_blank">
         <v-icon>
           camera
         </v-icon>
       </v-btn>
+
+      <v-btn icon flat ripple a href="https://api.whatsapp.com/send?phone=5522992840970" target="_blank">
+        <v-icon>
+          phone
+        </v-icon>
+      </v-btn>
+
     </v-toolbar-title>
     <v-spacer></v-spacer>
     
