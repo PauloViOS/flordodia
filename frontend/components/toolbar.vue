@@ -10,11 +10,14 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     
-    <v-btn flat class="botao_carrinho" color="#C672BF" 
+    <v-btn
+    icon
+    class="botao_carrinho" 
+    color="white" 
     @click="open_carrinho($event)"
     >
                 
-      <v-icon color="white">shopping_bag</v-icon>
+      <v-icon color="#C672BF">shopping_bag</v-icon>
 
       <span class="alerta_do_carrinho" v-if="temProduto()">
         {{carrinho.length}}
@@ -122,5 +125,8 @@ export default {
 
 <style>
 
+.botao_carrinho {
+
+}
 
 </style>

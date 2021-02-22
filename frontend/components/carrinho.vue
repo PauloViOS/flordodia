@@ -15,18 +15,20 @@
             <v-list-item-subtitle v-html="item.product_price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })">
             </v-list-item-subtitle>
 
-            <v-btn color="red" class="botao_de_remover" @click="remove_do_carrinho(index)">
-              <v-icon color="white" size="15" class="icone_de_remover">
-              X
+            <v-btn icon small color="red" class="botao_de_remover" @click="remove_do_carrinho(index)">
+              <v-icon color="white" size="20" class="icone_de_remover">
+              remove_circle_outline
               </v-icon> 
             </v-btn>
 
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list v-if="temProduto()" class="total_do_carrinho">
-        Total: R$ {{precoTotal()}}
-      </v-list>
+      <div class="container_total_checkout">
+        <v-list v-if="temProduto()" class="total_do_carrinho">
+          Total: R$ {{precoTotal()}}
+        </v-list>
+      </div>
     </v-dialog>
   </div>
 </template>
@@ -109,13 +111,9 @@ export default {
 <style>
 
 .botao_de_remover {
-  min-width: 10px;
-  min-height: 5px;
-  height: 20px;
-  width: 5px;
   position: relative;
   left: 90px;
-  bottom: 10px;
+  bottom: 15px;
   color: red;
 }
 
@@ -132,6 +130,7 @@ export default {
   padding-left: 15px;
   font-weight: bold;
   font-size: 18px;
+  position: sticky;
 }
 
 .nada_no_carrinho {
